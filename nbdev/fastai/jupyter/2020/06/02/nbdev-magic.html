@@ -95,7 +95,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      3 min read
     
 </span></p>
 
@@ -143,8 +143,29 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Overview">Overview </a></li>
 <li class="toc-entry toc-h1"><a href="#How-do-I-start-using-magic-flags?">How do I start using magic flags? </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#TODO">TODO </a></li>
+<li class="toc-entry toc-h2"><a href="#Can-I-use-both-comment-and-magic-flags?">Can I use both comment and magic flags? </a></li>
+<li class="toc-entry toc-h2"><a href="#Why-can't-I-see-any-"test"-flags?">Why can&#39;t I see any &quot;test&quot; flags? </a></li>
+<li class="toc-entry toc-h2"><a href="#Can-I-use-flags-in-any-kind-of-cell?">Can I use flags in any kind of cell? </a></li>
 <li class="toc-entry toc-h2"><a href="#Do-magic-flags-work-differently-to-comment-flags?">Do magic flags work differently to comment flags? </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#How-do-comment-flags-correspond-to-magic-flags?">How do comment flags correspond to magic flags? </a></li>
+<li class="toc-entry toc-h1"><a href="#Why-might-we-add-magic-flags-for-_all_-and-show_doc?">Why might we add magic flags for _all_ and show_doc? </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#%nbev_add2all">%nbev_add2all </a></li>
+<li class="toc-entry toc-h2"><a href="#%nbev_show_doc">%nbev_show_doc </a></li>
+<li class="toc-entry toc-h2"><a href="#ArithmeticError">class ArithmeticError[source]</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#ArithmeticError.mro">ArithmeticError.mro[source]</a></li>
+<li class="toc-entry toc-h4"><a href="#ArithmeticError.__init__">ArithmeticError.__init__[source]</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#ArithmeticError">class ArithmeticError[source]</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#ArithmeticError.mro">ArithmeticError.mro[source]</a></li>
+<li class="toc-entry toc-h4"><a href="#ArithmeticError.__init__">ArithmeticError.__init__[source]</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -172,7 +193,7 @@ window.onload = wrap_img;
 <p>nbdev is progressively getting magic commands that will eventually replace the special comments it currently uses, so you get autocomplete and documentation:</p>
 <p><figure>
   
-    <img class="docimage" src="/fastpages/images/copied_from_nb/images/nbdev-magic.gif" alt="images/nbdev-magic.gif" style="max-width: 75%px">
+    <img class="docimage" src="/fastpages/images/copied_from_nb/images/nbdev-magic.gif" alt="magic animation" style="max-width: 75%px">
     
     
 </figure>
@@ -187,7 +208,7 @@ window.onload = wrap_img;
 <p>You'll also get feedback when flags are used incorrectly:</p>
 <p><figure>
   
-    <img class="docimage" src="/fastpages/images/copied_from_nb/images/nbdev-magic-usage-error.png" alt="images/nbdev-magic.gif" style="max-width: 75%px">
+    <img class="docimage" src="/fastpages/images/copied_from_nb/images/nbdev-magic-usage-error.png" alt="magic usage error" style="max-width: 75%px">
     
     
 </figure>
@@ -219,13 +240,53 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="TODO">
-<a class="anchor" href="#TODO" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO<a class="anchor-link" href="#TODO"> </a>
+<h2 id="Can-I-use-both-comment-and-magic-flags?">
+<a class="anchor" href="#Can-I-use-both-comment-and-magic-flags?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can I use both comment and magic flags?<a class="anchor-link" href="#Can-I-use-both-comment-and-magic-flags?"> </a>
 </h2>
-<p>apart from <code>#hide</code> and <code>%nbdev_hide</code>, nbdev will ignore flags that are not in code cells - why?</p>
-<p>test flags are created dynamically from settings.ini tst_flags</p>
-<p>currently both comment and magic flags are supported and you can use both kinds in the same notebook</p>
-<p>don't currently have a plan for deprecating comment flags</p>
+<p>Both comment and magic flags are currently supported and you can use both kinds in the same notebook.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Why-can't-I-see-any-&quot;test&quot;-flags?">
+<a class="anchor" href="#Why-can't-I-see-any-" test aria-hidden="true"><span class="octicon octicon-link"></span></a>Why can't I see any "test" flags?<a class="anchor-link" href="#Why-can't-I-see-any-%22test%22-flags?"> </a>
+</h2>
+<p>If you don't see the test flags you need ...</p>
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/images/tab-complete-no-test.png" alt="auto complete no test" style="max-width: 55%px">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>... you'll probably need to update <code>settings.ini</code> then restart your notebook.</p>
+<p>Test flags are configured in your <code>settings.ini</code> (set <code>tst_flags</code>, separating flags by a <code>|</code> if you have several of them).</p>
+<p>When the <code>nbdev.flags</code> module is imported, test flags are created dynamically from your settings.ini. If <code>tst_flags=slow|gpu</code>, the following flags would be available:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">nbdev_slow_test</span>
+<span class="o">%</span><span class="n">nbdev_gpu_test</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Can-I-use-flags-in-any-kind-of-cell?">
+<a class="anchor" href="#Can-I-use-flags-in-any-kind-of-cell?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can I use flags in any kind of cell?<a class="anchor-link" href="#Can-I-use-flags-in-any-kind-of-cell?"> </a>
+</h2>
+<p>Apart from <code>#hide</code> and <code>%nbdev_hide</code>, nbdev will ignore flags that are not in code cells.
+This means that you can use markdown cells for "developer-only" details and <code>#hide</code> them from the HTML docs.</p>
 
 </div>
 </div>
@@ -281,7 +342,379 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This could make a difference because nbdev writes just the code part to both the library and HTML docs.</p>
+<p>This could make a difference because nbdev writes just the code part to both your library and HTML docs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-do-comment-flags-correspond-to-magic-flags?">
+<a class="anchor" href="#How-do-comment-flags-correspond-to-magic-flags?" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do comment flags correspond to magic flags?<a class="anchor-link" href="#How-do-comment-flags-correspond-to-magic-flags?"> </a>
+</h1>
+<table>
+<thead>
+<tr>
+<th>Comment flag</th>
+<th>Magic flag</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default_exp</code></td>
+<td><code>nbdev_default_export</code></td>
+<td>Define the name of the module everything should be exported in</td>
+</tr>
+<tr>
+<td><code>exports</code></td>
+<td><code>nbdev_export_and_show</code></td>
+<td>Export and show code in the docs</td>
+</tr>
+<tr>
+<td><code>exporti</code></td>
+<td><code>nbdev_export_internal</code></td>
+<td>Export but don’t show in docs and don’t add to <code>__all__</code>
+</td>
+</tr>
+<tr>
+<td><a href="/fastpages/images/copied_from_nb/export"><code>export</code></a></td>
+<td><code>nbdev_export</code></td>
+<td>Export but don’t show in docs</td>
+</tr>
+<tr>
+<td><code>hide_input</code></td>
+<td><code>nbdev_hide_input</code></td>
+<td>Do not show input of a test cell in docs</td>
+</tr>
+<tr>
+<td><code>hide_output</code></td>
+<td><code>nbdev_hide_output</code></td>
+<td>Do not show output of a test cell in docs</td>
+</tr>
+<tr>
+<td><code>hide</code></td>
+<td><code>nbdev_hide</code></td>
+<td>Do not show a test cell or markdown in docs</td>
+</tr>
+<tr>
+<td><code>default_cls_lvl</code></td>
+<td><code>nbdev_default_class_level</code></td>
+<td>Define the default toc level of classes</td>
+</tr>
+<tr>
+<td>
+<code>collapse_output</code> or <code>collapse-output</code>
+</td>
+<td><code>nbdev_collapse_output</code></td>
+<td>Inlcude output in the docs under a collapsable element</td>
+</tr>
+<tr>
+<td>
+<code>collapse_show</code> or <code>collapse-show</code>
+</td>
+<td><code>nbdev_collapse_input open</code></td>
+<td>Inlcude intput in the docs under a collapsable element that is open by default</td>
+</tr>
+<tr>
+<td>
+<code>collapse_hide</code> or <code>collapse-hide</code>
+</td>
+<td><code>nbdev_collapse_input</code></td>
+<td>Inlcude intput in the docs under a collapsable element</td>
+</tr>
+<tr>
+<td><code>collapse</code></td>
+<td><code>nbdev_collapse_input</code></td>
+<td>Inlcude intput in the docs under a collapsable element</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Why-might-we-add-magic-flags-for-_all_-and-show_doc?">
+<a class="anchor" href="#Why-might-we-add-magic-flags-for-_all_-and-show_doc?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why might we add magic flags for <code>_all_</code> and <code>show_doc</code>?<a class="anchor-link" href="#Why-might-we-add-magic-flags-for-_all_-and-show_doc?"> </a>
+</h1>
+<p>One of the reasons for suggesting this is so that everything can be done via magic flags - rather than using flags for everything except <code>_all_</code> and <code>show_doc</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%nbev_add2all">
+<a class="anchor" href="#%nbev_add2all" aria-hidden="true"><span class="octicon octicon-link"></span></a>%nbev_add2<strong>all</strong><a class="anchor-link" href="#%nbev_add2all"> </a>
+</h2>
+<p>here's what we do today</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">_all_</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'progress_bar'</span><span class="p">,</span><span class="s1">'master_bar'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>but we could ...</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">nbev_add2__all__</span> progress_bar,master_bar
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This flag could</p>
+<ul>
+<li>check that everything exists and names are valid (when the cell is executed) and </li>
+<li>make it possible to tab-complete the items you're adding to <code>__all__</code>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/images/add2all.png" alt="add to all" style="max-width: 55%px">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The example above uses a line magic, so you'd have to move everything on line 3 up to line 2 but ... we could use a cell magic</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%nbev_show_doc">
+<a class="anchor" href="#%nbev_show_doc" aria-hidden="true"><span class="octicon octicon-link"></span></a>%nbev_show_doc<a class="anchor-link" href="#%nbev_show_doc"> </a>
+</h2>
+<p>here's what we do today</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="ArithmeticError" class="doc_header">
+<a class="anchor" href="#ArithmeticError" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>class</code> <code>ArithmeticError</code><a href="" class="source_link" style="float:right">[source]</a>
+</h2>
+<blockquote>
+<p><code>ArithmeticError</code>() :: <code>Exception</code></p>
+</blockquote>
+<p>Base class for arithmetic errors.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="ArithmeticError.mro" class="doc_header">
+<a class="anchor" href="#ArithmeticError.mro" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>ArithmeticError.mro</code><a href="" class="source_link" style="float:right">[source]</a>
+</h4>
+<blockquote>
+<p><code>ArithmeticError.mro</code>()</p>
+</blockquote>
+<p>Return a type's method resolution order.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="ArithmeticError.__init__" class="doc_header">
+<a class="anchor" href="#ArithmeticError.__init__" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>ArithmeticError.__init__</code><a href="" class="source_link" style="float:right">[source]</a>
+</h4>
+<blockquote>
+<p><code>ArithmeticError.__init__</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+</blockquote>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>but we could ...</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">nbev_show_doc</span> ArithmeticError mro __init__
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="ArithmeticError" class="doc_header">
+<a class="anchor" href="#ArithmeticError" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>class</code> <code>ArithmeticError</code><a href="" class="source_link" style="float:right">[source]</a>
+</h2>
+<blockquote>
+<p><code>ArithmeticError</code>() :: <code>Exception</code></p>
+</blockquote>
+<p>Base class for arithmetic errors.</p>
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="ArithmeticError.mro" class="doc_header">
+<a class="anchor" href="#ArithmeticError.mro" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>ArithmeticError.mro</code><a href="" class="source_link" style="float:right">[source]</a>
+</h4>
+<blockquote>
+<p><code>ArithmeticError.mro</code>()</p>
+</blockquote>
+<p>Return a type's method resolution order.</p>
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="ArithmeticError.__init__" class="doc_header">
+<a class="anchor" href="#ArithmeticError.__init__" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>ArithmeticError.__init__</code><a href="" class="source_link" style="float:right">[source]</a>
+</h4>
+<blockquote>
+<p><code>ArithmeticError.__init__</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+</blockquote>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This flag could make it possible to "show doc" a class and any number of its methods with a single line of code.</p>
 
 </div>
 </div>
