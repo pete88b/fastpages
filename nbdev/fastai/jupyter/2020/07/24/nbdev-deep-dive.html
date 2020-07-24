@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Things you might not know you can do with nbdev | fastpages</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Things you might not know you can do with nbdev" />
+<meta name="author" content="Peter Butterfill" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Exploring some of the less well known nbdev features." />
+<meta property="og:description" content="Exploring some of the less well known nbdev features." />
+<link rel="canonical" href="https://pete88b.github.io/fastpages/nbdev/fastai/jupyter/2020/07/24/nbdev-deep-dive.html" />
+<meta property="og:url" content="https://pete88b.github.io/fastpages/nbdev/fastai/jupyter/2020/07/24/nbdev-deep-dive.html" />
+<meta property="og:site_name" content="fastpages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-24T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Peter Butterfill"},"description":"Exploring some of the less well known nbdev features.","@type":"BlogPosting","headline":"Things you might not know you can do with nbdev","dateModified":"2020-07-24T00:00:00-05:00","datePublished":"2020-07-24T00:00:00-05:00","url":"https://pete88b.github.io/fastpages/nbdev/fastai/jupyter/2020/07/24/nbdev-deep-dive.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://pete88b.github.io/fastpages/nbdev/fastai/jupyter/2020/07/24/nbdev-deep-dive.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/fastpages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pete88b.github.io/fastpages/feed.xml" title="fastpages" /><link rel="shortcut icon" type="image/x-icon" href="/fastpages/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Things you might not know you can do with nbdev | fastpages</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Things you might not know you can do with nbdev" />
+<meta name="author" content="Peter Butterfill" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Exploring some of the less well known nbdev features." />
+<meta property="og:description" content="Exploring some of the less well known nbdev features." />
+<link rel="canonical" href="https://pete88b.github.io/fastpages/nbdev/fastai/jupyter/2020/07/24/nbdev-deep-dive.html" />
+<meta property="og:url" content="https://pete88b.github.io/fastpages/nbdev/fastai/jupyter/2020/07/24/nbdev-deep-dive.html" />
+<meta property="og:site_name" content="fastpages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-24T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Peter Butterfill"},"description":"Exploring some of the less well known nbdev features.","@type":"BlogPosting","headline":"Things you might not know you can do with nbdev","dateModified":"2020-07-24T00:00:00-05:00","datePublished":"2020-07-24T00:00:00-05:00","url":"https://pete88b.github.io/fastpages/nbdev/fastai/jupyter/2020/07/24/nbdev-deep-dive.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://pete88b.github.io/fastpages/nbdev/fastai/jupyter/2020/07/24/nbdev-deep-dive.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://pete88b.github.io/fastpages/feed.xml" title="fastpages" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/fastpages/">fastpages</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/fastpages/about/">About Me</a><a class="page-link" href="/fastpages/search/">Search</a><a class="page-link" href="/fastpages/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Things you might not know you can do with nbdev</h1><p class="page-description">Exploring some of the less well known nbdev features.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-07-24T00:00:00-05:00" itemprop="datePublished">
+        Jul 24, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Peter Butterfill</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/fastpages/categories/#nbdev">nbdev</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages/categories/#fastai">fastai</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/pete88b/fastpages/tree/master/_notebooks/2020-07-24-nbdev-deep-dive.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/fastpages/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/pete88b/fastpages/master?filepath=_notebooks%2F2020-07-24-nbdev-deep-dive.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastpages/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/pete88b/fastpages/blob/master/_notebooks/2020-07-24-nbdev-deep-dive.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastpages/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a></li>
+<li class="toc-entry toc-h1"><a href="#Export-a-if-__name__-==-"__main__"-clause">Export a if __name__ == &quot;__main__&quot; clause </a></li>
+<li class="toc-entry toc-h1"><a href="#Use-multiple-flags-in-a-cell">Use multiple flags in a cell </a></li>
+<li class="toc-entry toc-h1"><a href="#Remove-all-special-comments-/-flags-from-the-docs">Remove all special comments / flags from the docs </a></li>
+<li class="toc-entry toc-h1"><a href="#Write-to-a-module-that-is-created-"later"">Write to a module that is created &quot;later&quot; </a></li>
+<li class="toc-entry toc-h1"><a href="#Exclude-a-single-notebook-from-doc-builds">Exclude a single notebook from doc builds </a></li>
+<li class="toc-entry toc-h1"><a href="#Hide-markdown-cells-from-the-docs">Hide markdown cells from the docs </a></li>
+<li class="toc-entry toc-h1"><a href="#Put-any-number-of-test-flags-in-a-cell">Put any number of test flags in a cell </a></li>
+<li class="toc-entry toc-h1"><a href="#Create-code-coverage-reports">Create code coverage reports </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#When-running-tests,-nbdev-runs-all-cells-in-a-notebook">When running tests, nbdev runs all cells in a notebook </a></li>
+<li class="toc-entry toc-h2"><a href="#Code-coverage-tells-you-what-you-definitely-haven't-tested,-not-what-you-have">Code coverage tells you what you definitely haven&#39;t tested, not what you have </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Use-%nbdev_add2all-in-place-of-_all_">Use %nbdev_add2all in place of _all_ </a></li>
+<li class="toc-entry toc-h1"><a href="#Use-code-completion-when-adding-to-__all__">Use code completion when adding to __all__ </a></li>
+<li class="toc-entry toc-h1"><a href="#Import-anything-needed-by-show_doc">Import anything needed by show_doc </a></li>
+<li class="toc-entry toc-h1"><a href="#Use-%nbdev_show_doc-to">Use %nbdev_show_doc to </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-07-24-nbdev-deep-dive.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h1>
+<p>Please note: You'll need to use an <a href="https://github.com/fastai/nbdev/#installing">editable install of nbdev</a> for everything in this blog to work.</p>
+<p>What follows is a collection of things I've learned while trying to help answer questions on the forum, fix issues and introduce magic flags. Hope it helps to know that you can ...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id='Export-a-if-__name__-==-"__main__"-clause'>
+<a class="anchor" href="#Export-a-if-__name__-==-" __main__ aria-hidden="true"><span class="octicon octicon-link"></span></a>Export a <code>if __name__ == "__main__"</code> clause<a class="anchor-link" href="#Export-a-if-__name__-==-%22__main__%22-clause"> </a>
+</h1>
+<p>I'd recommend using <a href="https://nbdev.fast.ai/tutorial/#Set-up-console-scripts">console scripts</a> wherever you can - but if you want your modules to run something when invoked directly, <code>if __name__ == "__main__"</code> could be the answer.</p>
+<p>Anything you <code>%nbdev_export</code> gets written to your .py - so you could write a cell like:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">nbdev_export</span>
+<span class="k">try</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">nbdev.imports</span> <span class="kn">import</span> <span class="n">IN_NOTEBOOK</span>
+<span class="k">except</span><span class="p">:</span> <span class="n">IN_NOTEBOOK</span><span class="o">=</span><span class="kc">False</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">IN_NOTEBOOK</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Running "command line" logic ...'</span><span class="p">)</span>
+</pre></div>
+<p>Note:</p>
+<ul>
+<li>We need the <code>not IN_NOTEBOOK</code> check because <code>__name__ == "__main__"</code> when running in a notebook</li>
+<li>We put the <code>IN_NOTEBOOK</code> import in a try catch so that your module doesn't have a dependency on nbdev</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Use-multiple-flags-in-a-cell">
+<a class="anchor" href="#Use-multiple-flags-in-a-cell" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use multiple flags in a cell<a class="anchor-link" href="#Use-multiple-flags-in-a-cell"> </a>
+</h1>
+<p>Most flags can be used in combination with other flags. Here's a couple of combinations that might be useful:</p>
+<ul>
+<li>You can hide input and collapse output with <code>%nbdev_hide_input</code> and <code>%nbdev_collapse_output</code>
+</li>
+<li>You can hide a cell and specify a test flag with <code>%nbdev_hide</code> and <code>%nbdev_slow_test</code>
+</li>
+</ul>
+<p>Note: You can't put multiple flags on the same line.</p>
+<p>There are a few things that are not supported yet, such as:</p>
+<ul>
+<li>You can collapse input or output <em>but not both</em><ul>
+<li>If nbdev finds both <code>%nbdev_collapse_input</code> and <code>%nbdev_collapse_output</code> it will ignore <code>%nbdev_collapse_output</code>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Remove-all-special-comments-/-flags-from-the-docs">
+<a class="anchor" href="#Remove-all-special-comments-/-flags-from-the-docs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Remove all special comments / flags from the docs<a class="anchor-link" href="#Remove-all-special-comments-/-flags-from-the-docs"> </a>
+</h1>
+<p>You might have seen special comments in your docs. This can happen if the special comment is not the 1st thing in the cell:</p>
+<div class="highlight"><pre><span></span><span class="c1"># hiding the input of this cell as the output is more important</span>
+<span class="c1"># collapse-hide</span>
+<span class="c1"># let's run some code ...</span>
+<span class="n">some_code</span><span class="p">(</span><span class="s1">'here'</span><span class="p">)</span>
+</pre></div>
+<p>This ↑ cell would get converted to ↓ in the docs.</p>
+<div class="highlight"><pre><span></span><span class="c1"># collapse-hide</span>
+<span class="c1"># let's run some code ...</span>
+<span class="n">some_code</span><span class="p">(</span><span class="s1">'here'</span><span class="p">)</span>
+</pre></div>
+<p>Converting your project to use magic flags with <code>nbdev_upgrade</code> would change the cell to:</p>
+<div class="highlight"><pre><span></span><span class="c1"># hiding the input of this cell as the output is more important</span>
+<span class="o">%</span><span class="n">nbdev_collapse_input</span>
+<span class="c1"># let's run some code ...</span>
+<span class="n">some_code</span><span class="p">(</span><span class="s1">'here'</span><span class="p">)</span>
+</pre></div>
+<p>Which gets converted to ↓ in the docs.</p>
+<div class="highlight"><pre><span></span><span class="c1"># let's run some code ...</span>
+<span class="n">some_code</span><span class="p">(</span><span class="s1">'here'</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id='Write-to-a-module-that-is-created-"later"'>
+<a class="anchor" href="#Write-to-a-module-that-is-created-" later aria-hidden="true"><span class="octicon octicon-link"></span></a>Write to a module that is created "later"<a class="anchor-link" href="#Write-to-a-module-that-is-created-%22later%22"> </a>
+</h1>
+<p>Lets say we have 2 notebooks:</p>
+<ul>
+<li>
+<code>00_core.ipynb</code><ul>
+<li>Which contains <code>%nbdev_default_export core</code> to create <code>core.py</code>
+</li>
+</ul>
+</li>
+<li>
+<code>01_data.ipynb</code><ul>
+<li>Which contains <code>%nbdev_default_export data</code> to create <code>data.py</code>
+</li>
+</ul>
+</li>
+</ul>
+<p>It used to be the case that writing a cell in <code>00_core.ipynb</code> that exports to <code>data</code> would cause problems:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">nbdev_export</span> <span class="n">data</span>
+<span class="k">def</span> <span class="nf">some_data_func</span><span class="p">():</span>
+    <span class="n">that_we_also_want_to_use</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'the core notebook'</span><span class="p">]</span>
+</pre></div>
+<p>nbdev is totally happy with this now.</p>
+<p>This change has also made it possible to use the same <code>%nbdev_default_export</code> in multiple notebooks. I'm <em>not</em> recommending that you do this but ... you can write to the same module from multiple notebooks.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exclude-a-single-notebook-from-doc-builds">
+<a class="anchor" href="#Exclude-a-single-notebook-from-doc-builds" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exclude a single notebook from doc builds<a class="anchor-link" href="#Exclude-a-single-notebook-from-doc-builds"> </a>
+</h1>
+<p>You can do simple exclusions with glob. The following command include all .ipynb files unless they start with 2:</p>
+
+<pre><code>nbdev_build_docs --fname=[!2]*.ipynb</code></pre>
+<p>It's worth remembering that nbdev will ignore any file that starts with an underscore - I use this all the time with <code>_tmp</code> in <code>.gitignore</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Hide-markdown-cells-from-the-docs">
+<a class="anchor" href="#Hide-markdown-cells-from-the-docs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hide markdown cells from the docs<a class="anchor-link" href="#Hide-markdown-cells-from-the-docs"> </a>
+</h1>
+<p>Apart from <code>#hide</code> and <code>%nbdev_hide</code>, nbdev will ignore flags that are not in code cells.
+This means that you can use markdown cells for "developer-only" details and <code>#hide</code> them from the HTML docs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Put-any-number-of-test-flags-in-a-cell">
+<a class="anchor" href="#Put-any-number-of-test-flags-in-a-cell" aria-hidden="true"><span class="octicon octicon-link"></span></a>Put any number of test flags in a cell<a class="anchor-link" href="#Put-any-number-of-test-flags-in-a-cell"> </a>
+</h1>
+<p>Lets say you have <code>tst_flags = slow|cuda</code> in <code>settings.ini</code> so that you can flag test as being slow or needing a GPU. If you need to flag a test as being both slow and needing a GPU, you can:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">nbdev_slow_test</span>
+<span class="o">%</span><span class="n">nbdev_cuda_test</span>
+<span class="n">tst_result</span><span class="o">=</span><span class="n">long_running_fn</span><span class="p">()</span>
+</pre></div>
+<p>Currently, only one test flag can be applied to all cells in a notebook. So if you had ↓ only the slow test flag would be picked up:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">nbdev_slow_test</span> <span class="nb">all</span>
+<span class="o">%</span><span class="n">nbdev_cuda_test</span> <span class="nb">all</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Create-code-coverage-reports">
+<a class="anchor" href="#Create-code-coverage-reports" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create code coverage reports<a class="anchor-link" href="#Create-code-coverage-reports"> </a>
+</h1>
+<p>We can run tests in parallel and get coverage with <a href="https://github.com/pytest-dev/pytest-cov">pytest-cov</a>.</p>
+<p>If you'd like to try this:</p>
+<ul>
+<li>install pytest-cov and its dependencies</li>
+<li>copy <a href="https://github.com/pete88b/decision_tree/blob/master/test_nbs.py">test_nbs.py</a> to your nbdev project</li>
+<li>then run <code>pytest --cov=[your lib name]</code>
+</li>
+</ul>
+<p>Feel free to join <a href="https://forums.fast.ai/t/nbdev-code-coverage-n-tests/73993/6">the discussion</a> (o:</p>
+<h2 id="When-running-tests,-nbdev-runs-all-cells-in-a-notebook">
+<a class="anchor" href="#When-running-tests,-nbdev-runs-all-cells-in-a-notebook" aria-hidden="true"><span class="octicon octicon-link"></span></a>When running tests, nbdev runs all cells in a notebook<a class="anchor-link" href="#When-running-tests,-nbdev-runs-all-cells-in-a-notebook"> </a>
+</h2>
+<p>Currently, when you <code>nbdev_test_nbs</code>, nbdev will run your notebooks from top to bottom.</p>
+<p>A consequence of this is that if you have</p>
+<ul>
+<li>
+<code>00_core.ipynb</code> that contains <code>%nbdev_default_export core</code>,</li>
+<li>
+<code>nbdev_test_nbs --fname 00_core.ipynb</code> will not test <code>core.py</code>.</li>
+</ul>
+<p>While <a href="https://github.com/pete88b/decision_tree/blob/master/test_nbs.py">test_nbs.py</a> might look a little complicated, it means that <code>nbdev_test_nbs --fname 00_core.ipynb</code> will test <code>core.py</code> and you get accurate coverage data.</p>
+<h2 id="Code-coverage-tells-you-what-you-definitely-haven't-tested,-not-what-you-have">
+<a class="anchor" href="#Code-coverage-tells-you-what-you-definitely-haven't-tested,-not-what-you-have" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code coverage tells you what you definitely haven't tested, not what you have<a class="anchor-link" href="#Code-coverage-tells-you-what-you-definitely-haven't-tested,-not-what-you-have"> </a>
+</h2>
+<p>I really like this ↑ quote from <a href="https://stackoverflow.com/questions/695811/pitfalls-of-code-coverage/695888#695888">Mark Simpson</a></p>
+<p>While there are lots of good uses of coverage reports, I've seen them do more harm than good to projects when used as a strict quality measure. I really like the fastai style of writing tests that show how code can be used, then focusing on functional coverage.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Use-%nbdev_add2all-in-place-of-_all_">
+<a class="anchor" href="#Use-%nbdev_add2all-in-place-of-_all_" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use <code>%nbdev_add2all</code> in place of <code>_all_</code><a class="anchor-link" href="#Use-%nbdev_add2all-in-place-of-_all_"> </a>
+</h1>
+<p>Sometimes objects are not picked to be automatically added to the <code>__all__</code> of the module so you will need to add them manually. To do so, create an exported cell with the following code <code>%nbdev_add2all "name", "name2"</code></p>
+<p>Please note:</p>
+<ul>
+<li>elements in <code>%nbdev_add2all</code> can be space and/or comma separated and don't have to be quoted<div class="highlight"><pre><span></span><span class="c1"># 'func', 'func2' and 'func3' will be added to `__all__`</span>
+<span class="o">%</span><span class="n">nbdev_add2all</span> <span class="n">func</span><span class="p">,</span> <span class="n">func2</span> <span class="n">func3</span>
+<span class="c1"># you'll see warnings if any unquoted function names can't be found</span>
+</pre></div>
+</li>
+<li>elements on a new line will <em>not</em> be added to <code>__all__</code><div class="highlight"><pre><span></span><span class="c1"># 'func2' won't get added to `__all__`</span>
+<span class="o">%</span><span class="n">nbdev_add2all</span> <span class="s1">'func'</span><span class="p">,</span>
+      <span class="s1">'func2'</span>
+</pre></div>
+</li>
+<li>only the first <code>%nbdev_add2all</code> in a cell will get picked up<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">nbdev_add2all</span> <span class="p">[</span><span class="s1">'func'</span><span class="p">]</span>
+<span class="c1"># `func2` won't get added to `__all__`</span>
+<span class="o">%</span><span class="n">nbdev_add2all</span> <span class="p">[</span><span class="s1">'func2'</span><span class="p">]</span>
+</pre></div>
+</li>
+<li>but you can have any number of <code>%nbdev_add2all</code>s in a notebook by putting them in different cells.</li>
+</ul>
+<p>I'm <em>not</em> recommending that you do this but ... as long as you have only one <code>_all_</code> or <code>%nbdev_add2all</code> in an exported cell, you can put any other code you like in this cell.</p>
+<p>For more exmaples, please see this <a href="https://github.com/pete88b/decision_tree/blob/master/61_test_add2__all__.ipynb">demo page</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Use-code-completion-when-adding-to-__all__">
+<a class="anchor" href="#Use-code-completion-when-adding-to-__all__" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use code completion when adding to <code>__all__</code><a class="anchor-link" href="#Use-code-completion-when-adding-to-__all__"> </a>
+</h1>
+<p>It used to be the case that using unquoted names in <code>_all_</code> caused problems:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">nbdev_export</span>
+<span class="n">_all_</span> <span class="o">=</span> <span class="p">[</span><span class="n">func</span><span class="p">,</span> <span class="n">func2</span> <span class="n">func3</span><span class="p">]</span>
+</pre></div>
+<p>This ↑ will work fine now as names get quoted when writing to your library ↓:</p>
+<div class="highlight"><pre><span></span><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'other'</span><span class="p">,</span><span class="s1">'things'</span><span class="p">,</span><span class="s1">'you'</span><span class="p">,</span><span class="s1">'have'</span><span class="p">,</span><span class="s1">'exported'</span><span class="p">,</span><span class="s1">'func'</span><span class="p">,</span><span class="s1">'func2'</span><span class="p">,</span><span class="s1">'func3'</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Import-anything-needed-by-show_doc">
+<a class="anchor" href="#Import-anything-needed-by-show_doc" aria-hidden="true"><span class="octicon octicon-link"></span></a>Import anything needed by show_doc<a class="anchor-link" href="#Import-anything-needed-by-show_doc"> </a>
+</h1>
+<p>When building docs, nbdev runs all <code>show_doc</code> and <code>%nbdev_show_doc</code> cells so that stale output doesn't make it into your docs.</p>
+<p>So that names are available when making <code>show_doc</code> calls, nbdev runs cells containing:</p>
+<ul>
+<li>a "library import" (zero indent import from current library) e.g. <code>from LIB_NAME.core import *</code>
+</li>
+</ul>
+<p>If running these cells raises an exception, the build will stop.</p>
+<p>nbdev also runs cells containing zero indented imports. e.g.</p>
+<ul>
+<li>
+<code>from module import *</code> or</li>
+<li><code>import module</code></li>
+</ul>
+<p>If running these cells raises an exception, the build will not stop.</p>
+<p>If you need to <code>show_doc</code> something, please make sure it's imported via a cell that does not depend on previous cells being run. The easiest way to do this is to use a cell that contains nothing but imports.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Use-%nbdev_show_doc-to">
+<a class="anchor" href="#Use-%nbdev_show_doc-to" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use <code>%nbdev_show_doc</code> to<a class="anchor-link" href="#Use-%nbdev_show_doc-to"> </a>
+</h1>
+<p>For me, one of the best things about <code>show_doc</code> is not having to use it (o: because nbdev automatically adds <code>show_doc</code> for exported functions and classes.</p>
+<p>To make it possible to do everything via magic flags and provide a few shortcuts, we've added <code>%nbdev_show_doc</code>. While <code>show_doc</code> will most often be the best choice, here are a few ways in which <code>%nbdev_show_doc</code> can help:</p>
+<p>Here are a few lines from <a href="https://github.com/fastai/fastai2/blob/master/nbs/00_torch_core.ipynb">00_torch_core.ipynb</a>:</p>
+<div class="highlight"><pre><span></span><span class="n">show_doc</span><span class="p">(</span><span class="n">TitledInt</span><span class="p">,</span> <span class="n">title_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">show_doc</span><span class="p">(</span><span class="n">TitledStr</span><span class="p">,</span> <span class="n">title_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">show_doc</span><span class="p">(</span><span class="n">TitledFloat</span><span class="p">,</span> <span class="n">title_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+<p>That could be written with one <code>%nbdev_show_doc</code>:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">nbdev_show_doc</span> <span class="n">TitledInt</span><span class="p">,</span><span class="n">TitledStr</span><span class="p">,</span><span class="n">TitledFloat</span><span class="p">,</span><span class="n">title_level</span><span class="o">=</span><span class="mi">3</span>
+</pre></div>
+<p>Here are some of the <code>DataLoaders</code> <code>show_doc</code> calls from <a href="https://github.com/fastai/fastai2/blob/master/nbs/03_data.core.ipynb">03_data.core.ipynb</a>:</p>
+<div class="highlight"><pre><span></span><span class="n">show_doc</span><span class="p">(</span><span class="n">DataLoaders</span><span class="o">.</span><span class="n">train</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"DataLoaders.train"</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">show_doc</span><span class="p">(</span><span class="n">DataLoaders</span><span class="o">.</span><span class="n">valid</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"DataLoaders.valid"</span><span class="p">)</span>
+</pre></div>
+<blockquote>
+<p>This ↑ is not typical fastai - which might make it a good time to quote Sylvain:"I'm less convinced by <code>%nbdev_show_doc</code> since it mostly seems useful for calling show_doc on several functions at once and we usually insert markdown between two show_doc calls".
+Having said that (o: all of the <code>DataLoaders</code> <code>show_doc</code> calls could be written with one <code>%nbdev_show_doc</code> <em>without</em> having to pass <code>name=</code>:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">nbdev_show_doc</span> <span class="n">DataLoaders</span> <span class="o">.</span> <span class="fm">__getitem__</span> <span class="n">train</span> <span class="n">valid</span> <span class="n">train_ds</span> <span class="n">valid_ds</span>
+</pre></div>
+</blockquote>
+<p>Or even more succinctly as:</p>
+<p><figure>
+  
+    <img class="docimage" src="/fastpages/images/copied_from_nb/images/show_doc_with_wildcard.png" alt="show_doc with wildcard" style="max-width: 75%px">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the example above ↑</p>
+<ul>
+<li>The <code>*</code> tells nbdev_show_doc to show all public members but ...</li>
+<li>we dont show the output for all members here as it's quite a long list</li>
+</ul>
+<p>For more examples, please see this <a href="https://github.com/pete88b/decision_tree/blob/master/51_test_show_doc.ipynb">demo page</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="pete88b/fastpages"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/fastpages/nbdev/fastai/jupyter/2020/07/24/nbdev-deep-dive.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/fastpages/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/fastpages/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/fastpages/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/pete88b" title="pete88b"><svg class="svg-icon grey"><use xlink:href="/fastpages/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
